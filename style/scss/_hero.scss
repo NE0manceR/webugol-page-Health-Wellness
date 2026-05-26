@@ -38,12 +38,13 @@
       position: absolute;
       transform-origin: bottom;
       z-index: 2;
+      animation: capsule-float-1 8s ease-in-out infinite;
 
       &:nth-child(2) {
         top: -60px;
         left: -20px;
-        transform: rotate(40deg);
         z-index: 1;
+        animation: capsule-float-2 8s ease-in-out infinite;
       }
     }
   }
@@ -76,5 +77,35 @@
     font-style: normal;
     font-weight: 200;
     line-height: 130%;
+  }
+}
+
+@keyframes capsule-float-1 {
+  0%, 100% {
+    transform: translateY(0) rotate(-4deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(-6deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-10px) rotate(4deg);
+  }
+}
+
+@keyframes capsule-float-2 {
+  0%, 100% {
+    transform: translateY(0) rotate(44deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(42deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(48deg);
+  }
+  75% {
+    transform: translateY(-10px) rotate(52deg);
   }
 }
