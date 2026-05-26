@@ -58,6 +58,73 @@
     </div>
 
   </section>
+
+  <section class="partnership">
+    <div class="partnership__stage">
+      <h2 class="partnership__title">CHECK THE RESULTS OF PARTNERSHIP
+WITH WEBUGOL</h2>
+
+      <div class="partnership__card partnership__card--1">
+        <img class="partnership__card-bg" src="./assets/images/partnership/card-1-bg.jpg" alt="">
+        <div class="partnership__card-overlay"></div>
+        <img class="partnership__card-logo" src="./assets/images/partnership/logo-ways2well.png" alt="Ways2Well + Atlas Men's Health">
+      </div>
+
+      <div class="partnership__card partnership__card--2">
+        <img class="partnership__card-bg" src="./assets/images/partnership/card-2-bg.jpg" alt="">
+        <div class="partnership__card-overlay"></div>
+        <img class="partnership__card-logo" src="./assets/images/partnership/logo-valhalla.png" alt="Valhalla Vitality">
+      </div>
+
+      <div class="partnership__card partnership__card--3">
+        <img class="partnership__card-bg" src="./assets/images/partnership/card-3-bg.jpg" alt="">
+        <div class="partnership__card-overlay"></div>
+        <img class="partnership__card-logo" src="./assets/images/partnership/logo-atlas.png" alt="Atlas Men's Health">
+      </div>
+
+      <div class="partnership__card partnership__card--4">
+        <img class="partnership__card-bg" src="./assets/images/partnership/card-4-bg.jpg" alt="">
+        <div class="partnership__card-overlay"></div>
+        <img class="partnership__card-logo" src="./assets/images/partnership/logo-p.png" alt="P">
+      </div>
+
+      <div class="partnership__card partnership__card--5">
+        <img class="partnership__card-bg" src="./assets/images/partnership/card-5-bg.jpg" alt="">
+        <div class="partnership__card-overlay"></div>
+        <img class="partnership__card-logo" src="./assets/images/partnership/logo-liferx.png" alt="LifeRX MD">
+      </div>
+
+      <div class="partnership__card partnership__card--6">
+        <img class="partnership__card-bg" src="./assets/images/partnership/card-6-bg.jpg" alt="">
+        <div class="partnership__card-overlay"></div>
+        <img class="partnership__card-logo" src="./assets/images/partnership/logo-fusionlabs.png" alt="Fusionlabs">
+      </div>
+
+      <div class="partnership__card partnership__card--7">
+        <img class="partnership__card-bg" src="./assets/images/partnership/card-7-bg.jpg" alt="">
+        <div class="partnership__card-overlay"></div>
+        <img class="partnership__card-logo" src="./assets/images/partnership/logo-uberdoc.png" alt="UberDoc">
+      </div>
+
+      <button class="partnership__button">JOIN THE BEST</button>
+    </div>
+  </section>
+
+  <script>
+    const partnership = document.querySelector('.partnership');
+    if (partnership) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            partnership.classList.add('is-visible');
+          } else {
+            partnership.classList.remove('is-visible');
+          }
+        });
+      }, { threshold: 0.50 });
+      observer.observe(partnership);
+    }
+  </script>
 </body>
 
 </html>

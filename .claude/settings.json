@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__claude_ai_Figma__get_design_context",
+      "mcp__claude_ai_Figma__get_variable_defs",
+      "PowerShell(Get-Command ffmpeg -ErrorAction SilentlyContinue)",
+      "Read(//c/Users/alexk/Downloads/**)",
+      "mcp__claude_ai_Figma__get_metadata",
+      "Bash(grep -oE 'id=\\\\\\\\\"[0-9]+:[0-9]+\\\\\\\\\" name=\\\\\\\\\"Type=End[^\\\\\\\\]*\\\\\\\\\"' \"C:\\\\Users\\\\alexk\\\\.claude\\\\projects\\\\d--wg-progects-webugol-pages-webugol-page-Health-Wellness\\\\40ca88c3-93a4-48d3-90da-ba6f1747f8f3\\\\tool-results\\\\mcp-claude_ai_Figma-get_metadata-1779800303977.txt\")",
+      "Bash(grep -oE '<symbol id=\\\\\\\\\"[0-9]+:[0-9]+\\\\\\\\\" name=\\\\\\\\\"[^\\\\\\\\]*\\\\\\\\\"' \"C:\\\\Users\\\\alexk\\\\.claude\\\\projects\\\\d--wg-progects-webugol-pages-webugol-page-Health-Wellness\\\\40ca88c3-93a4-48d3-90da-ba6f1747f8f3\\\\tool-results\\\\mcp-claude_ai_Figma-get_metadata-1779800303977.txt\")",
+      "Bash(grep -oE 'id=\\\\\\\\\"8823:[0-9]+\\\\\\\\\"' \"C:\\\\Users\\\\alexk\\\\.claude\\\\projects\\\\d--wg-progects-webugol-pages-webugol-page-Health-Wellness\\\\40ca88c3-93a4-48d3-90da-ba6f1747f8f3\\\\tool-results\\\\mcp-claude_ai_Figma-get_metadata-1779800303977.txt\")",
+      "Bash(npx sass *)"
+    ]
+  }
+}
