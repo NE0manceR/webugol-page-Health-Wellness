@@ -1,0 +1,80 @@
+@use "./_main" as *;
+
+.wellness-hero {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+
+  .wellness-container {
+    position: relative;
+  }
+
+  &__video,
+  &__video-filter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+  }
+
+  &__video-filter {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 2;
+  }
+
+  &__capsule-wrap {
+    position: absolute;
+    right: 0;
+    top: -33%;
+    width: 600px;
+    height: 600px;
+
+    img {
+      position: absolute;
+      transform-origin: bottom;
+      z-index: 2;
+
+      &:nth-child(2) {
+        top: -60px;
+        left: -20px;
+        transform: rotate(40deg);
+        z-index: 1;
+      }
+    }
+  }
+
+  &__text {
+    position: relative;
+    z-index: 23;
+  }
+
+  &__title {
+    max-width: 1000px;
+    margin-bottom: 20px;
+    color: $main-text-color;
+    font-kerning: none;
+    font-family: "Raleway";
+    font-size: 68px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 110%;
+    text-transform: uppercase;
+  }
+
+  &__description {
+    max-width: 640px;
+    margin-bottom: 40px;
+    color: $main-text-color;
+    font-kerning: none;
+    font-family: Raleway;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 130%;
+  }
+}
