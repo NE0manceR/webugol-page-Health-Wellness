@@ -2,6 +2,26 @@ $main-text-color: white;
 $second-text-color: #000;
 $button-hover: #6C01F6;
 
+// Brand colors
+$brand-orange: #FF8902;
+$brand-purple: #5E01D5;
+
+// Surfaces
+$section-dark: #111;
+$card-bg: #1D1D1D;
+
+// Borders & dividers
+$divider-color: rgba(255, 255, 255, 0.2);
+$divider-mobile: #FFF;
+
+// Gradients
+$brand-gradient: linear-gradient(180deg, $brand-purple 10.2%, $brand-orange 135%);
+
+// Fonts
+$font-heading: "Raleway", sans-serif;
+$font-ui:      "Josefin Sans", sans-serif;
+$font-text:    "Biryani", sans-serif;
+
 * {
   padding: 0;
   margin: 0;

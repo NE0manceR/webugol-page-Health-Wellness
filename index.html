@@ -25,6 +25,9 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght,XOPQ,XTRA,YOPQ,YTDE,YTFI,YTLC,YTUC@8..144,100..1000,96,468,79,-203,738,514,712&display=swap"
     rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Biryani:wght@200;300;400;600;700;800;900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght,XOPQ,XTRA,YOPQ,YTDE,YTFI,YTLC,YTUC@8..144,100..1000,96,468,79,-203,738,514,712&display=swap" rel="stylesheet">
   <!-- FONTS -->
   <title>Document</title>
 </head>
@@ -124,6 +127,72 @@ WITH WEBUGOL</h2>
     </div>
   </section>
 
+  <section class="how-we-work">
+    <h2 class="how-we-work__title">How we work?</h2>
+
+    <div class="how-we-work__grid">
+      <div class="how-we-work__cube">
+        <span class="how-we-work__cube-number">1</span>
+      </div>
+
+      <div class="how-we-work__num is-active" data-step="1">1</div>
+      <article class="how-we-work__step is-active" data-step="1">
+        <div class="how-we-work__step-badge"><span>1</span></div>
+        <h3 class="how-we-work__step-title">Business &amp; Ad Performance Analysis</h3>
+        <div class="how-we-work__step-desc">
+          <h4 class="how-we-work__step-subtitle">Understanding Your Business Inside-Out</h4>
+          <p class="how-we-work__step-text">
+            We start by analyzing the current state of your business and ad performance.
+            Our experts dive deep into your data, identifying key growth opportunities to optimize results.
+          </p>
+        </div>
+        <img class="how-we-work__step-image" src="./assets/images/how-work/1.webp" alt="Business analysis dashboard">
+      </article>
+
+      <div class="how-we-work__num" data-step="2">2</div>
+      <article class="how-we-work__step" data-step="2">
+        <div class="how-we-work__step-badge"><span>2</span></div>
+        <h3 class="how-we-work__step-title">Strategy Creation</h3>
+        <div class="how-we-work__step-desc">
+          <h4 class="how-we-work__step-subtitle">Tailored Strategies for Maximum Growth</h4>
+          <p class="how-we-work__step-text">
+            Once we understand your business, we craft a personalized strategy, designed to target your
+            audience and achieve your goals efficiently. Every step is mapped out for growth.
+          </p>
+        </div>
+        <img class="how-we-work__step-image" src="./assets/images/how-work/2.webp" alt="Strategy creation">
+      </article>
+
+      <div class="how-we-work__num" data-step="3">3</div>
+      <article class="how-we-work__step" data-step="3">
+        <div class="how-we-work__step-badge"><span>3</span></div>
+        <h3 class="how-we-work__step-title">Daily Optimization</h3>
+        <div class="how-we-work__step-desc">
+          <h4 class="how-we-work__step-subtitle">Continuous Optimization for Consistent Results</h4>
+          <p class="how-we-work__step-text">
+            We optimize your channels daily. From ads to performance metrics, we ensure everything runs
+            smoothly, maximizing your ROI and driving your business forward.
+          </p>
+        </div>
+        <img class="how-we-work__step-image" src="./assets/images/how-work/3.webp" alt="Daily optimization dashboard">
+      </article>
+
+      <div class="how-we-work__num" data-step="4">4</div>
+      <article class="how-we-work__step" data-step="4">
+        <div class="how-we-work__step-badge"><span>4</span></div>
+        <h3 class="how-we-work__step-title">Measurable Results From Day One</h3>
+        <div class="how-we-work__step-desc">
+          <h4 class="how-we-work__step-subtitle">Trackable Impact, Starting Immediately</h4>
+          <p class="how-we-work__step-text">
+            From the first day, you&rsquo;ll see real results. With clear metrics and ongoing adjustments,
+            we ensure your goals are met, driving tangible business growth and measurable success.
+          </p>
+        </div>
+        <img class="how-we-work__step-image" src="./assets/images/how-work/4.webp" alt="Measurable results">
+      </article>
+    </div>
+  </section>
+
   <script>
     const partnership = document.querySelector('.partnership');
     if (partnership) {
@@ -137,6 +206,45 @@ WITH WEBUGOL</h2>
         });
       }, { threshold: 0.50 });
       observer.observe(partnership);
+    }
+
+    const cubeNumber = document.querySelector('.how-we-work__cube-number');
+    const steps = Array.from(document.querySelectorAll('.how-we-work__step'));
+    const nums = document.querySelectorAll('.how-we-work__num');
+    if (cubeNumber && steps.length) {
+      let currentNum = null;
+      const updateActiveStep = () => {
+        const triggerY = window.innerHeight * 0.5;
+        let bestStep = null;
+        let bestDist = Infinity;
+        steps.forEach((step) => {
+          const rect = step.getBoundingClientRect();
+          if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+          const dist = Math.abs(rect.top - triggerY);
+          if (dist < bestDist) {
+            bestDist = dist;
+            bestStep = step;
+          }
+        });
+        if (!bestStep) return;
+        const num = bestStep.dataset.step;
+        if (num === currentNum) return;
+        currentNum = num;
+        cubeNumber.textContent = num;
+        steps.forEach((s) => s.classList.toggle('is-active', s.dataset.step === num));
+        nums.forEach((n) => n.classList.toggle('is-active', n.dataset.step === num));
+      };
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            updateActiveStep();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+      updateActiveStep();
     }
   </script>
 </body>

@@ -1,0 +1,313 @@
+@use "./_main" as *;
+
+.how-we-work {
+  position: relative;
+  padding: 120px 20px;
+  background: $section-dark;
+  color: $main-text-color;
+
+  &__title {
+    margin: 0 0 80px;
+    font-family: $font-heading;
+    font-weight: 800;
+    font-size: 72px;
+    line-height: 1.1;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &__grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    column-gap: 80px;
+    row-gap: 0;
+    max-width: 1480px;
+    margin: 0 auto;
+  }
+
+  &__cube {
+    grid-column: 1;
+    grid-row: 1 / -1;
+    position: sticky;
+    top: 50vh;
+    transform: translateY(-50%);
+    align-self: start;
+    width: 220px;
+    height: 220px;
+    border-radius: 16px;
+    background: $brand-gradient;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 30px 80px rgba(94, 1, 213, 0.35);
+    z-index: 2;
+  }
+
+  &__cube-number {
+    color: $main-text-color;
+    text-align: center;
+    font-kerning: none;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-feature-settings: 'ss03' on, 'ss05' on, 'ss08' on, 'ss09' on, 'ss10' on, 'liga' off, 'clig' off, 'rclt' off;
+    font-family: $font-heading;
+    font-size: 72px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 110%;
+    text-transform: uppercase;
+  }
+
+  &__num {
+    grid-column: 1;
+    color: rgba(255, 255, 255, 0.15);
+    font-family: $font-heading;
+    font-weight: 800;
+    font-size: 120px;
+    line-height: 1;
+    text-align: center;
+    align-self: center;
+    transition: opacity 0.3s ease;
+  }
+
+  &__step {
+    grid-column: 2;
+    justify-self: end;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 940px;
+    padding: 24px 0 40px;
+    border-top: 2px solid $divider-color;
+
+    &:last-of-type {
+      border-bottom: 2px solid $divider-color;
+    }
+  }
+
+  &__num,
+  &__step {
+    &[data-step="1"] {
+      grid-row: 1;
+    }
+
+    &[data-step="2"] {
+      grid-row: 2;
+    }
+
+    &[data-step="3"] {
+      grid-row: 3;
+    }
+
+    &[data-step="4"] {
+      grid-row: 4;
+    }
+  }
+
+  &__num.is-active {
+    opacity: 0;
+  }
+
+  &__step-badge {
+    display: none;
+    width: 64px;
+    height: 64px;
+    border-radius: 14px;
+    background: $brand-gradient;
+    align-items: center;
+    justify-content: center;
+    color: $main-text-color;
+    font-family: $font-heading;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 1.1;
+    flex-shrink: 0;
+    text-transform: uppercase;
+    font-kerning: none;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-feature-settings: 'ss03' on, 'ss05' on, 'ss08' on, 'ss09' on, 'ss10' on, 'liga' off, 'clig' off, 'rclt' off;
+  }
+
+  &__step-title {
+    margin: 0 0 12px;
+    color: $main-text-color;
+    font-family: $font-heading;
+    font-weight: 800;
+    font-size: 28px;
+    line-height: 1.1;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+  }
+
+  &__step.is-active {
+    .how-we-work__step-title {
+      color: $brand-orange;
+    }
+  }
+
+  &__step-subtitle {
+    margin: 0 0 12px;
+    color: $main-text-color;
+    font-family: $font-heading;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  &__step-text {
+    margin: 0 0 32px;
+    color: $main-text-color;
+    font-family: $font-text;
+    font-weight: 200;
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 800px;
+  }
+
+  &__step-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+  }
+
+  @media (max-width: 1050px) {
+    padding: 80px 20px;
+
+    &__title {
+      margin-bottom: 60px;
+      font-size: 48px;
+    }
+
+    &__grid {
+      grid-template-columns: 120px 1fr;
+      column-gap: 40px;
+    }
+
+    &__cube {
+      width: 130px;
+      height: 130px;
+    }
+
+    &__cube-number {
+      font-size: 72px;
+    }
+
+    &__num {
+      font-size: 72px;
+    }
+
+    &__step {
+      padding: 32px 0;
+    }
+
+    &__step-title {
+      font-size: 22px;
+    }
+
+    &__step-subtitle {
+      font-size: 18px;
+    }
+
+    &__step-text {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 750px) {
+    padding: 60px 20px;
+
+    &__title {
+      margin-bottom: 40px;
+      font-size: 28px;
+    }
+
+    &__grid {
+      grid-template-columns: 1fr;
+      column-gap: 0;
+    }
+
+    &__cube,
+    &__num {
+      display: none;
+    }
+
+    &__step {
+      grid-column: 1;
+      justify-self: stretch;
+      max-width: none;
+      padding: 20px 0 40px;
+      border-top: 1px solid $divider-mobile;
+      border-bottom: none;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-areas:
+        "badge title"
+        "desc  desc"
+        "image image";
+      column-gap: 16px;
+      row-gap: 16px;
+
+      &:last-of-type {
+        border-bottom: none;
+      }
+    }
+
+    &__step-badge {
+      display: flex;
+      grid-area: badge;
+    }
+
+    &__step-title {
+      grid-area: title;
+      align-self: center;
+      margin: 0;
+      font-family: $font-ui;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 1.1;
+      color: $brand-orange;
+    }
+
+    &__step-desc {
+      grid-area: desc;
+      font-family: $font-text;
+      font-size: 18px;
+      line-height: 1.6;
+      color: $main-text-color;
+    }
+
+    &__step-subtitle {
+      display: inline;
+      margin: 0;
+      font-family: $font-text;
+      font-weight: 400;
+      font-size: inherit;
+      line-height: inherit;
+      text-transform: none;
+      color: inherit;
+
+      &::after {
+        content: ". ";
+      }
+    }
+
+    &__step-text {
+      display: inline;
+      margin: 0;
+      font-family: $font-text;
+      font-weight: 200;
+      font-size: inherit;
+      line-height: inherit;
+      color: inherit;
+    }
+
+    &__step-image {
+      grid-area: image;
+      margin: 0;
+      border-radius: 14px;
+    }
+  }
+}
