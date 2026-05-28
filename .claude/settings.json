@@ -14,7 +14,8 @@
       "Bash(grep -oE 'imgImage[0-9]* = \\\\\\\\\"[^\\\\\\\\]+\\\\\\\\\"' \"C:\\\\Users\\\\alexk\\\\.claude\\\\projects\\\\d--wg-progects-webugol-pages-webugol-page-Health-Wellness\\\\40ca88c3-93a4-48d3-90da-ba6f1747f8f3\\\\tool-results\\\\toolu_013VxnCtZTz93yY4ksJyH2o8.json\")",
       "Bash(grep -oE 'size-\\\\\\\\\\\\[[0-9]+px\\\\\\\\\\\\]|text-\\\\\\\\\\\\[[0-9]+px\\\\\\\\\\\\]|rounded-\\\\\\\\\\\\[[0-9]+px\\\\\\\\\\\\]' \"C:\\\\Users\\\\alexk\\\\.claude\\\\projects\\\\d--wg-progects-webugol-pages-webugol-page-Health-Wellness\\\\40ca88c3-93a4-48d3-90da-ba6f1747f8f3\\\\tool-results\\\\toolu_013VxnCtZTz93yY4ksJyH2o8.json\")",
       "Bash(grep -oE 'size-\\\\\\\\\\\\[[0-9]+px\\\\\\\\\\\\]|w-\\\\\\\\\\\\[1[0-9][0-9]px\\\\\\\\\\\\]|text-\\\\\\\\\\\\[[0-9]+px\\\\\\\\\\\\]' \"C:\\\\Users\\\\alexk\\\\.claude\\\\projects\\\\d--wg-progects-webugol-pages-webugol-page-Health-Wellness\\\\40ca88c3-93a4-48d3-90da-ba6f1747f8f3\\\\tool-results\\\\toolu_013VxnCtZTz93yY4ksJyH2o8.json\")",
-      "Bash(grep -oE '\\\\.how-we-work__num[^,{]*[,{]|\\\\.how-we-work__num\\\\.is-active[^{]*{[^}]*}' style/css/style.min.css)"
+      "Bash(grep -oE '\\\\.how-we-work__num[^,{]*[,{]|\\\\.how-we-work__num\\\\.is-active[^{]*{[^}]*}' style/css/style.min.css)",
+      "Bash(awk 'NR==237{print; print \"REPLACE_HERE\"} NR!=237' index.html.tmp)"
     ]
   }
 }

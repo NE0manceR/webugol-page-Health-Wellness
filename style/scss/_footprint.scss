@@ -1,0 +1,311 @@
+@use "./_main" as *;
+
+.footprint {
+  position: relative;
+  padding: 100px 0;
+  background: $section-dark;
+  color: $main-text-color;
+  overflow: hidden;
+
+  &__container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    min-height: 1052px;
+    pointer-events: none;
+  }
+
+  &__title {
+    margin: 0;
+    font-family: $font-heading;
+    font-weight: 800;
+    font-size: 72px;
+    line-height: 1.1;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &__info {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 120px;
+    pointer-events: none;
+  }
+
+  &__card-header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding-right: 600px;
+    overflow: hidden;
+
+    > * {
+      pointer-events: auto;
+    }
+  }
+
+
+  &__subtitle {
+    margin: 0;
+    font-family: $font-ui;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.1;
+    text-transform: uppercase;
+    color: $main-text-color;
+  }
+
+  &__tabs-wrap {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+  }
+
+  &__tabs {
+    display: flex;
+    align-items: stretch;
+    gap: 40px;
+    flex: 1;
+    overflow-x: auto;
+    scrollbar-width: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+
+    &::-webkit-scrollbar { display: none; }
+  }
+
+  &__tab {
+    flex-shrink: 0;
+    padding: 8px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    color: $main-text-color;
+    font-family: $font-heading;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.25s ease, border-color 0.25s ease;
+    font-feature-settings: 'ss03' on, 'ss05' on, 'ss08' on, 'ss09' on, 'ss10' on, 'liga' off, 'rclt' off;
+
+    &:hover {
+      color: $brand-orange;
+    }
+
+    &.is-active {
+      color: $brand-orange;
+      border-bottom-color: $brand-orange;
+    }
+  }
+
+  &__tabs-prev,
+  &__tabs-next {
+    flex-shrink: 0;
+    width: 52px;
+    height: 42px;
+    background: none;
+    border: none;
+    color: $main-text-color;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $brand-orange;
+    }
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &__cards {
+    position: relative;
+    width: 580px;
+    height: 346px;
+    pointer-events: auto;
+  }
+
+  &__card {
+    position: absolute;
+    inset: 0;
+    padding: 32px;
+    padding-right: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &.is-active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  &__card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__card-title {
+    margin: 0;
+    color: $main-text-color;
+    font-family: $font-ui;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+
+  &__card-text {
+    margin: 0;
+    color: $main-text-color;
+    font-family: $font-text;
+    font-weight: 200;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  &__card-link {
+    color: $brand-orange;
+    font-family: $font-ui;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.1;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.75;
+    }
+  }
+
+  &__card-logo {
+    position: absolute;
+    right: 32px;
+    bottom: 32px;
+    max-height: 60px;
+    max-width: 180px;
+    object-fit: contain;
+  }
+
+  &__map {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 1158px;
+    height: 998px;
+    z-index: 1;
+  }
+
+  &__globe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  &__zone {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 4;
+    transition: background 0.2s ease;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 18.5px;
+      height: 18.5px;
+      border-radius: 50%;
+      background: transparent;
+      transition: background 0.2s ease, box-shadow 0.2s ease;
+      pointer-events: none;
+    }
+
+    &:hover::after {
+      background: rgba(255, 137, 2, 0.25);
+      box-shadow: 0 0 12px rgba(255, 137, 2, 0.45);
+    }
+  }
+
+  &__glow {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 18.5px;
+    height: 18.5px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #2D1A05 0%, #2D1A05 42%, #FF8902 100%);
+    border: 1.5px solid $brand-orange;
+    box-sizing: border-box;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+
+    &.is-shown {
+      opacity: 1;
+    }
+  }
+
+  &__marker {
+    position: absolute;
+    transform: translate(-50%, -100%);
+    width: 45px;
+    height: 45px;
+    pointer-events: none;
+    z-index: 3;
+    transition: left 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                top  0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  &__marker-icon {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  &__marker-letter {
+    position: absolute;
+    top: 38%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: $section-dark;
+    font-family: $font-heading;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+}
