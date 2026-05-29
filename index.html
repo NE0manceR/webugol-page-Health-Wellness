@@ -232,6 +232,38 @@ WITH WEBUGOL</h2>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </button>
         </div>
+
+        <div class="footprint__select">
+          <button class="footprint__select-trigger" type="button" aria-expanded="false">
+            <span class="footprint__select-current">Select a Company</span>
+            <svg class="footprint__select-chevron" viewBox="0 0 29 30" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.3024 25.1979L20.5 15.0003L10.3024 4.80273L8.5 6.60516L16.8952 15.0003L8.5 23.3955L10.3024 25.1979Z"/>
+            </svg>
+          </button>
+          <ul class="footprint__select-list" role="listbox">
+            <li><button class="footprint__select-option" data-partner="ways2well">Ways2Well</button></li>
+            <li><button class="footprint__select-option" data-partner="valhalla">Valhalla Vitality</button></li>
+            <li><button class="footprint__select-option" data-partner="uberdoc">UberDoc</button></li>
+            <li><button class="footprint__select-option" data-partner="partington">Partington</button></li>
+            <li><button class="footprint__select-option" data-partner="atlas">Atlas Men's Health</button></li>
+            <li><button class="footprint__select-option" data-partner="liferx">LifeRx.MD</button></li>
+            <li><button class="footprint__select-option" data-partner="stackmd">StackMD</button></li>
+            <li><button class="footprint__select-option" data-partner="fusionlabs">Fusionlabs</button></li>
+            <li><button class="footprint__select-option" data-partner="invigor">Invigor</button></li>
+            <li><button class="footprint__select-option" data-partner="peaknow">Peak Now</button></li>
+            <li><button class="footprint__select-option" data-partner="drtelx">Dr Telx</button></li>
+            <li><button class="footprint__select-option" data-partner="hairtransplant">Hair Transplant Centre</button></li>
+            <li><button class="footprint__select-option" data-partner="dearborn">Dearborn West Dental</button></li>
+            <li><button class="footprint__select-option" data-partner="tenuiss">Tenuiss</button></li>
+            <li><button class="footprint__select-option" data-partner="ironsail">Ironsail Pharma</button></li>
+            <li><button class="footprint__select-option" data-partner="lody">Lody Health Klinik</button></li>
+            <li><button class="footprint__select-option" data-partner="aspireloss">ASPIRE Weight Loss</button></li>
+            <li><button class="footprint__select-option" data-partner="drugtesting">Drug Testing Supplies</button></li>
+            <li><button class="footprint__select-option" data-partner="aspireelite">Aspire Elite Wellness</button></li>
+            <li><button class="footprint__select-option" data-partner="kaduceus">Kaduceus</button></li>
+            <li><button class="footprint__select-option" data-partner="vitalitymd">Men's Vitality MD</button></li>
+          </ul>
+        </div>
         </div>
 
         <div class="footprint__cards">
@@ -383,6 +415,15 @@ WITH WEBUGOL</h2>
             <a class="footprint__card-link" href="#">View Project</a>
           </article>
         </div>
+
+        <div class="footprint__mobile-arrows">
+          <button class="footprint__arrow" data-dir="-1" aria-label="Previous">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <button class="footprint__arrow" data-dir="1" aria-label="Next">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -483,9 +524,16 @@ WITH WEBUGOL</h2>
       const markerLetter = marker && marker.querySelector('.footprint__marker-letter');
       const glow = footprint.querySelector('.footprint__glow');
 
+      const select = footprint.querySelector('.footprint__select');
+      const selectCurrent = footprint.querySelector('.footprint__select-current');
+      const selectOptions = footprint.querySelectorAll('.footprint__select-option');
+
       const activatePartner = (partner) => {
         tabs.forEach((el) => el.classList.toggle('is-active', el.dataset.partner === partner));
         cards.forEach((el) => el.classList.toggle('is-active', el.dataset.partner === partner));
+        selectOptions.forEach((el) => el.classList.toggle('is-active', el.dataset.partner === partner));
+        const activeOpt = footprint.querySelector('.footprint__select-option[data-partner="' + partner + '"]');
+        if (selectCurrent && activeOpt) selectCurrent.textContent = activeOpt.textContent;
         const zone = footprint.querySelector('.footprint__zone[data-partner="' + partner + '"]');
         if (zone && marker) {
           marker.style.left = zone.style.left;
@@ -519,6 +567,49 @@ WITH WEBUGOL</h2>
       const nextBtn = footprint.querySelector('.footprint__tabs-next');
       if (prevBtn) prevBtn.addEventListener('click', () => step(-1));
       if (nextBtn) nextBtn.addEventListener('click', () => step(1));
+
+      const selectTrigger = footprint.querySelector('.footprint__select-trigger');
+      if (selectTrigger && select) {
+        selectTrigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          select.classList.toggle('is-open');
+          selectTrigger.setAttribute('aria-expanded', select.classList.contains('is-open'));
+        });
+        document.addEventListener('click', (e) => {
+          if (!select.contains(e.target)) {
+            select.classList.remove('is-open');
+            selectTrigger.setAttribute('aria-expanded', 'false');
+          }
+        });
+        selectOptions.forEach((opt) => {
+          opt.addEventListener('click', () => {
+            activatePartner(opt.dataset.partner);
+            select.classList.remove('is-open');
+            selectTrigger.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+
+      footprint.querySelectorAll('.footprint__arrow').forEach((btn) => {
+        btn.addEventListener('click', () => step(parseInt(btn.dataset.dir, 10) || 1));
+      });
+
+      const cardsContainer = footprint.querySelector('.footprint__cards');
+      if (cardsContainer) {
+        let touchStartX = 0;
+        let touchStartY = 0;
+        cardsContainer.addEventListener('touchstart', (e) => {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+        cardsContainer.addEventListener('touchend', (e) => {
+          const dx = e.changedTouches[0].clientX - touchStartX;
+          const dy = e.changedTouches[0].clientY - touchStartY;
+          if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+            step(dx < 0 ? 1 : -1);
+          }
+        }, { passive: true });
+      }
     }
   </script>
 </body>
