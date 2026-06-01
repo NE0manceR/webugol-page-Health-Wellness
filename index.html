@@ -720,7 +720,7 @@ WITH WEBUGOL</h2>
 
       const startAuto = () => {
         clearInterval(timer);
-        // timer = setInterval(() => setActive(current + 1), 5000);
+        timer = setInterval(() => setActive(current + 1), 5000);
       };
 
       steps.forEach((el, i) => {
@@ -729,6 +729,14 @@ WITH WEBUGOL</h2>
           startAuto();
         });
       });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) startAuto();
+          else clearInterval(timer);
+        });
+      }, { threshold: 0.2 });
+      observer.observe(engineered);
     }
   </script>
 </body>
