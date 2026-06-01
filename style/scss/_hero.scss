@@ -7,6 +7,24 @@
   height: 100vh;
   overflow: hidden;
 
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -50px;
+    height: 590px;
+    pointer-events: none;
+    z-index: 2;
+    background: linear-gradient(
+      180deg,
+      rgba(17, 17, 17, 0) 0%,
+      rgba(17, 17, 17, 0.7) 70%,
+      rgba(17, 17, 17, 0.9) 92%,
+      rgba(17, 17, 17, 0) 100%
+    );
+  }
+
   .wellness-container {
     position: relative;
   }
