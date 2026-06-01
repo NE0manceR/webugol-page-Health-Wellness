@@ -482,6 +482,75 @@ WITH WEBUGOL</h2>
     </div>
   </section>
 
+  <section class="engineered">
+    <h2 class="engineered__title">Growth Isn&rsquo;t Random.<br>It&rsquo;s Engineered.</h2>
+
+    <div class="engineered__card">
+      <div class="engineered__left">
+        <div class="engineered__panels">
+          <div class="engineered__panel is-active" data-step="1">
+            <div class="engineered__left-content">
+              <p class="engineered__label">Growth Sprint</p>
+              <div class="engineered__details">
+                <h3 class="engineered__step-title">Month 1: Building the Plan<br>and Measurement Framework</h3>
+                <ol class="engineered__list">
+                  <li>Market Intelligence</li>
+                  <li>Funnel &amp; Offer Strategy</li>
+                  <li>Website &amp; Landing Page Build</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="engineered__panel" data-step="2">
+            <div class="engineered__left-content">
+              <p class="engineered__label">Growth Sprint</p>
+              <div class="engineered__details">
+                <h3 class="engineered__step-title">Month 2: Transforming<br>Plans into Results</h3>
+                <ol class="engineered__list">
+                  <li>Tracking Foundation</li>
+                  <li>Enhanced Analytics &amp; Dashboards</li>
+                  <li>Campaign Launch/Rebuild</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="engineered__panel" data-step="3">
+            <div class="engineered__left-content">
+              <p class="engineered__label">Growth Sprint</p>
+              <div class="engineered__details">
+                <h3 class="engineered__step-title">Month 3: From Scale<br>to Compounding Results</h3>
+                <ol class="engineered__list">
+                  <li>Daily Optimization</li>
+                  <li>Conversion Nurture</li>
+                  <li>Retention &amp; Repeat</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="wellnes-primary-button engineered__button">Join the best</button>
+      </div>
+
+      <div class="engineered__images">
+        <img class="engineered__image is-active" src="./assets/images/engineered/heart-1.png" alt="" data-step="1">
+        <img class="engineered__image" src="./assets/images/engineered/heart-2.png" alt="" data-step="2">
+        <img class="engineered__image" src="./assets/images/engineered/heart-3.png" alt="" data-step="3">
+      </div>
+
+      <ul class="engineered__steps">
+        <li class="engineered__step is-active" data-step="1">
+          <span class="engineered__step-label">Strategy + Foundations</span>
+        </li>
+        <li class="engineered__step" data-step="2">
+          <span class="engineered__step-label">Build Conversion Assets + Launch</span>
+        </li>
+        <li class="engineered__step" data-step="3">
+          <span class="engineered__step-label">Scale + Automate</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
   <script>
     const partnership = document.querySelector('.partnership');
     if (partnership) {
@@ -631,6 +700,35 @@ WITH WEBUGOL</h2>
           }
         }, { passive: true });
       }
+    }
+
+    const engineered = document.querySelector('.engineered');
+    if (engineered) {
+      const steps = engineered.querySelectorAll('.engineered__step');
+      const panels = engineered.querySelectorAll('.engineered__panel');
+      const images = engineered.querySelectorAll('.engineered__image');
+      const total = steps.length;
+      let current = 0;
+      let timer;
+
+      const setActive = (idx) => {
+        current = (idx + total) % total;
+        steps.forEach((el, i) => el.classList.toggle('is-active', i === current));
+        panels.forEach((el, i) => el.classList.toggle('is-active', i === current));
+        images.forEach((el, i) => el.classList.toggle('is-active', i === current));
+      };
+
+      const startAuto = () => {
+        clearInterval(timer);
+        // timer = setInterval(() => setActive(current + 1), 5000);
+      };
+
+      steps.forEach((el, i) => {
+        el.addEventListener('click', () => {
+          setActive(i);
+          startAuto();
+        });
+      });
     }
   </script>
 </body>

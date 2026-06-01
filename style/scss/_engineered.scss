@@ -1,0 +1,406 @@
+@use "./_main" as *;
+
+.engineered {
+  padding: 100px 20px;
+  background: $section-dark;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 42px;
+
+  &__title {
+    margin: 0;
+    max-width: 1370px;
+    width: 100%;
+    font-family: $font-heading;
+    font-weight: 800;
+    font-size: 72px;
+    line-height: 1.1;
+    text-align: center;
+    color: $main-text-color;
+    text-transform: uppercase;
+  }
+
+  &__card {
+    position: relative;
+    display: flex;
+    width: 100%;
+    max-width: 1370px;
+    height: 560px;
+    background: $card-bg;
+    border: 1px solid #fff;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  &__left {
+    position: relative;
+    flex: 0 0 900px;
+    height: 100%;
+    z-index: 2;
+  }
+
+  &__panels {
+    position: absolute;
+    left: 36px;
+    top: 80px;
+    width: 445px;
+    display: grid;
+  }
+
+  &__panel {
+    grid-area: 1 / 1;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+
+    &.is-active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  &__left-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__label {
+    margin: 0;
+    color: $brand-orange;
+    font-family: $font-text;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+
+  &__step-title {
+    margin: 0;
+    color: $main-text-color;
+    font-family: $font-text;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
+  &__list {
+    margin: 0;
+    padding-left: 27px;
+    color: $main-text-color;
+    font-family: $font-text;
+    font-weight: 200;
+    font-size: 18px;
+    line-height: 1.6;
+    list-style: decimal;
+  }
+
+  &__button {
+    position: absolute;
+    left: 36px;
+    top: 336px;
+    width: 320px;
+    padding: 17px 24px;
+  }
+
+  &__images {
+    position: absolute;
+    left: calc(50% - 40px);
+    top: 76.4%;
+    width: 640px;
+    height: 540px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  &__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transform: translateY(0) rotate(14.61deg) scale(0.95);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+
+    &[data-step="2"] {
+      transform: translateY(-65px) rotate(0deg) scale(0.95);
+    }
+
+    &[data-step="3"] {
+      transform: translateY(-85px) rotate(0deg) scale(0.95);
+    }
+
+    &.is-active {
+      opacity: 1;
+      transform: translateY(0) rotate(14.61deg) scale(1);
+    }
+
+    &[data-step="2"].is-active {
+      transform: translateY(-65px) rotate(0deg) scale(1);
+    }
+
+    &[data-step="3"].is-active {
+      transform: translateY(-85px) rotate(0deg) scale(1);
+    }
+  }
+
+  &__steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 0 0 470px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    z-index: 2;
+  }
+
+  &__step {
+    width: 100%;
+    padding: 28px 30px 28px 22px;
+    text-align: right;
+    background: $card-bg;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: background 0.3s ease;
+
+    &:last-child {
+      padding-bottom: 99px;
+    }
+
+    &:hover &-label {
+      color: rgba(255, 137, 2, 0.7);
+    }
+  }
+
+  &__step-label {
+    font-family: $font-text;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.1;
+    text-transform: uppercase;
+    color: $main-text-color;
+    transition: color 0.3s ease;
+  }
+
+  &__step.is-active &__step-label {
+    color: $brand-orange;
+  }
+
+  @media (max-width: 1050px) {
+    padding: 60px 20px;
+
+    &__title {
+      font-size: 48px;
+    }
+
+    &__card {
+      flex-direction: column;
+      height: auto;
+    }
+
+    &__left {
+      flex: 0 0 auto;
+      width: 100%;
+      height: auto;
+      min-height: 460px;
+      padding: 0 50% 190px 0;
+      position: relative;
+    }
+
+    &__panels {
+      position: relative;
+      left: auto;
+      top: auto;
+      width: auto;
+      margin: 32px 0 0 32px;
+      z-index: 2;
+    }
+
+    &__left-content {
+      gap: 16px;
+    }
+
+    &__details {
+      gap: 6px;
+    }
+
+    &__button {
+      position: relative;
+      left: auto;
+      top: auto;
+      width: 240px;
+      padding: 18px 20px;
+      font-size: 16px;
+      margin: 24px 0 0 32px;
+      z-index: 2;
+    }
+
+    &__images {
+      left: auto;
+      right: 0;
+      top: auto;
+      bottom: 0;
+      width: 50%;
+      height: 460px;
+      transform: none;
+    }
+
+    &__image {
+      transform: translate(-20px, -59px) rotate(13deg);
+
+      &[data-step="2"] {
+        transform: scale(1.5) translate(-20px, -57px);
+      }
+
+      &[data-step="3"] {
+        transform: scale(1.5) translate(-20px, -94px);
+      }
+
+      &.is-active {
+        transform: translate(-20px, -59px) rotate(13deg);
+      }
+
+      &[data-step="2"].is-active {
+        transform: scale(1.5) translate(-20px, -57px);
+      }
+
+      &[data-step="3"].is-active {
+        transform: scale(1.5) translate(-20px, -94px);
+      }
+    }
+
+    &__steps {
+      flex: 0 0 auto;
+      width: 100%;
+    }
+
+    &__step {
+      width: 100%;
+      padding: 18px 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.3);
+      border-bottom: none;
+
+      &:last-child {
+        padding: 18px 16px;
+        border-bottom: none;
+      }
+    }
+  }
+
+  @media (max-width: 750px) {
+    padding: 40px 20px;
+    gap: 32px;
+
+    &__title {
+      font-size: 28px;
+    }
+
+    &__card {
+      border-radius: 8px;
+      max-width: 365px;
+    }
+
+    &__left {
+      height: 628px;
+      padding: 0;
+    }
+
+    &__panels {
+      position: relative;
+      left: auto;
+      top: auto;
+      width: 304px;
+      margin: 32px 0 0 32px;
+      z-index: 2;
+    }
+
+    &__left-content {
+      gap: 12px;
+    }
+
+    &__details {
+      gap: 6px;
+    }
+
+    &__label {
+      font-size: 16px;
+    }
+
+    &__step-title {
+      font-size: 22px;
+      line-height: 1.2;
+    }
+
+    &__list {
+      font-size: 18px;
+      padding-left: 27px;
+
+      li + li {
+        margin-top: 12px;
+      }
+    }
+
+    &__button {
+      position: relative;
+      left: auto;
+      top: auto;
+      width: 220px;
+      padding: 18px 20px;
+      font-size: 16px;
+      margin: 24px 0 0 32px;
+      z-index: 2;
+    }
+
+    &__images {
+      left: 50%;
+      right: auto;
+      top: 298px;
+      width: 365px;
+      height: 330px;
+      transform: translateX(-50%);
+    }
+
+    &__image {
+      transform: translate(0px, 98px) rotate(13deg);
+
+      &[data-step="2"] {
+        transform: scale(1.2) translate(15px, 37px);
+      }
+
+      &[data-step="3"] {
+        transform: scale(1.4) translate(6px, -4px);
+      }
+
+      &.is-active {
+        transform: translate(0px, 98px) rotate(13deg);
+      }
+
+      &[data-step="2"].is-active {
+        transform: scale(1.2) translate(15px, 37px);
+      }
+
+      &[data-step="3"].is-active {
+        transform: scale(1.4) translate(6px, -4px);
+      }
+    }
+
+    &__step-label {
+      font-size: 16px;
+    }
+
+    &__step {
+      padding: 18px 16px;
+      background: $card-bg;
+    }
+  }
+}
