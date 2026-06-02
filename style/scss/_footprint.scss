@@ -12,16 +12,15 @@
     position: absolute;
     left: 0;
     right: 0;
-    bottom: -50px;
-    height: 590px;
+    bottom: -44px;
+    height: 760px;
     pointer-events: none;
     z-index: 1;
     background: linear-gradient(
       180deg,
       rgba(17, 17, 17, 0) 0%,
-      rgba(17, 17, 17, 0.7) 70%,
-      rgba(17, 17, 17, 0.9) 92%,
-      rgba(17, 17, 17, 0) 100%
+      rgba(17, 17, 17, 0.7) 60%,
+      rgba(17, 17, 17, 0.92) 100%
     );
   }
 
@@ -71,7 +70,7 @@
   &__subtitle {
     margin: 0;
     font-family: $font-ui;
-    font-weight: 700;
+    font-weight: 500;
     font-size: 32px;
     line-height: 1.1;
     text-transform: uppercase;
@@ -202,7 +201,7 @@
   &__mobile-arrows {
     display: none;
     justify-content: center;
-    gap: 48px;
+    gap: 140px;
     margin-top: 24px;
     pointer-events: auto;
   }
@@ -572,7 +571,7 @@
       width: 100%;
       max-width: 834px;
       height: auto;
-      aspect-ratio: 834 / 917;
+      aspect-ratio: 834 / 708;
       margin: 0 auto;
     }
   }
@@ -663,7 +662,7 @@
     }
 
     &::after {
-      height: 320px;
+      height: 200px;
       background: linear-gradient(
         180deg,
         rgba(17, 17, 17, 0) 0%,
