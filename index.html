@@ -227,10 +227,14 @@ WITH WEBUGOL</h2>
             <button class="footprint__tab" data-partner="aspireelite">Aspire Elite Wellness</button>
             <button class="footprint__tab" data-partner="kaduceus">Kaduceus</button>
             <button class="footprint__tab" data-partner="vitalitymd">Men's Vitality MD</button>
+            <button class="footprint__tab" data-partner="badsm">BADSM</button>
+            <button class="footprint__tab" data-partner="aditidesai">Aditi Desai</button>
+            <button class="footprint__tab" data-partner="hilser">Hilser Clinic</button>
           </nav>
           <button class="footprint__tabs-next" aria-label="Next">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </button>
+          <span class="footprint__tabs-indicator" aria-hidden="true"></span>
         </div>
 
         <div class="footprint__select">
@@ -262,6 +266,9 @@ WITH WEBUGOL</h2>
             <li><button class="footprint__select-option" data-partner="aspireelite">Aspire Elite Wellness</button></li>
             <li><button class="footprint__select-option" data-partner="kaduceus">Kaduceus</button></li>
             <li><button class="footprint__select-option" data-partner="vitalitymd">Men's Vitality MD</button></li>
+            <li><button class="footprint__select-option" data-partner="badsm">BADSM</button></li>
+            <li><button class="footprint__select-option" data-partner="aditidesai">Aditi Desai</button></li>
+            <li><button class="footprint__select-option" data-partner="hilser">Hilser Clinic</button></li>
           </ul>
         </div>
         </div>
@@ -435,6 +442,27 @@ WITH WEBUGOL</h2>
             <a class="footprint__card-link" href="#">View Project</a>
             <img class="footprint__card-logo" src="./assets/images/logos/men`s-vitality.svg" alt="">
           </article>
+          <article class="footprint__card" data-partner="badsm">
+            <div class="footprint__card-body">
+              <h4 class="footprint__card-title">BADSM</h4>
+              <p class="footprint__card-text">Placeholder description for BADSM. Replace with the real partner copy.</p>
+            </div>
+            <a class="footprint__card-link" href="#">View Project</a>
+          </article>
+          <article class="footprint__card" data-partner="aditidesai">
+            <div class="footprint__card-body">
+              <h4 class="footprint__card-title">Aditi Desai</h4>
+              <p class="footprint__card-text">Placeholder description for Aditi Desai. Replace with the real partner copy.</p>
+            </div>
+            <a class="footprint__card-link" href="#">View Project</a>
+          </article>
+          <article class="footprint__card" data-partner="hilser">
+            <div class="footprint__card-body">
+              <h4 class="footprint__card-title">Hilser Clinic</h4>
+              <p class="footprint__card-text">Placeholder description for Hilser Clinic. Replace with the real partner copy.</p>
+            </div>
+            <a class="footprint__card-link" href="#">View Project</a>
+          </article>
         </div>
 
         <div class="footprint__mobile-arrows">
@@ -479,6 +507,10 @@ WITH WEBUGOL</h2>
       <button class="footprint__zone" data-partner="liferx"         data-letter="L" style="left:67.05%;top:37.13%"></button>
       <button class="footprint__zone" data-partner="stackmd"        data-letter="S" style="left:67.47%;top:36.15%"></button>
       <button class="footprint__zone" data-partner="peaknow"        data-letter="P" style="left:40.46%;top:41.45%"></button>
+
+      <button class="footprint__zone" data-partner="badsm"          data-letter="B" data-globe="2" style="left:47.55%;top:22.38%"></button>
+      <button class="footprint__zone" data-partner="aditidesai"     data-letter="A" data-globe="2" style="left:49.32%;top:20.72%"></button>
+      <button class="footprint__zone" data-partner="hilser"         data-letter="H" data-globe="2" style="left:50.20%;top:23.74%"></button>
     </div>
   </section>
 
@@ -620,6 +652,30 @@ WITH WEBUGOL</h2>
       const marker = footprint.querySelector('.footprint__marker');
       const markerLetter = marker && marker.querySelector('.footprint__marker-letter');
       const glow = footprint.querySelector('.footprint__glow');
+      const tabsNav = footprint.querySelector('.footprint__tabs');
+      const tabsWrap = footprint.querySelector('.footprint__tabs-wrap');
+      const tabsIndicator = footprint.querySelector('.footprint__tabs-indicator');
+      const globeImg = footprint.querySelector('.footprint__globe');
+
+      const updateIndicator = () => {
+        if (!tabsWrap || !tabsIndicator || !tabsNav) return;
+        const active = footprint.querySelector('.footprint__tab.is-active');
+        if (!active) { tabsIndicator.style.opacity = '0'; return; }
+        const wrapRect = tabsWrap.getBoundingClientRect();
+        const navRect = tabsNav.getBoundingClientRect();
+        const tabRect = active.getBoundingClientRect();
+        const l = Math.max(tabRect.left, navRect.left);
+        const r = Math.min(tabRect.right, navRect.right);
+        if (r <= l) { tabsIndicator.style.opacity = '0'; return; }
+        tabsIndicator.style.left = (l - wrapRect.left) + 'px';
+        tabsIndicator.style.width = (r - l) + 'px';
+        tabsIndicator.style.opacity = '1';
+      };
+      const GLOBES = {
+        '1': './assets/map/globe-with-point.svg',
+        '2': './assets/map/globe-with-point-2.svg',
+      };
+      let currentGlobe = '1';
 
       const select = footprint.querySelector('.footprint__select');
       const selectCurrent = footprint.querySelector('.footprint__select-current');
@@ -627,11 +683,31 @@ WITH WEBUGOL</h2>
 
       const activatePartner = (partner) => {
         tabs.forEach((el) => el.classList.toggle('is-active', el.dataset.partner === partner));
+        const activeTab = footprint.querySelector('.footprint__tab[data-partner="' + partner + '"]');
+        if (activeTab && tabsNav) {
+          const navRect = tabsNav.getBoundingClientRect();
+          const tabRect = activeTab.getBoundingClientRect();
+          const delta = (tabRect.left + tabRect.width / 2) - (navRect.left + navRect.width / 2);
+          tabsNav.scrollBy({ left: delta, behavior: 'smooth' });
+        }
+        updateIndicator();
         cards.forEach((el) => el.classList.toggle('is-active', el.dataset.partner === partner));
         selectOptions.forEach((el) => el.classList.toggle('is-active', el.dataset.partner === partner));
         const activeOpt = footprint.querySelector('.footprint__select-option[data-partner="' + partner + '"]');
         if (selectCurrent && activeOpt) selectCurrent.textContent = activeOpt.textContent;
         const zone = footprint.querySelector('.footprint__zone[data-partner="' + partner + '"]');
+        const globeId = zone && zone.dataset.globe ? zone.dataset.globe : '1';
+        if (globeImg && GLOBES[globeId] && globeId !== currentGlobe) {
+          currentGlobe = globeId;
+          globeImg.style.opacity = '0';
+          setTimeout(() => {
+            globeImg.src = GLOBES[globeId];
+            globeImg.style.opacity = '1';
+          }, 180);
+        }
+        zones.forEach((z) => {
+          z.style.display = (z.dataset.globe || '1') === globeId ? '' : 'none';
+        });
         if (zone && marker) {
           marker.style.left = zone.style.left;
           marker.style.top = zone.style.top;
@@ -651,6 +727,13 @@ WITH WEBUGOL</h2>
       tabs.forEach((tab) => tab.addEventListener('click', () => activatePartner(tab.dataset.partner)));
       zones.forEach((zone) => zone.addEventListener('click', () => activatePartner(zone.dataset.partner)));
 
+      const initialTab = footprint.querySelector('.footprint__tab.is-active');
+      if (initialTab) activatePartner(initialTab.dataset.partner);
+
+      if (tabsNav) tabsNav.addEventListener('scroll', updateIndicator, { passive: true });
+      window.addEventListener('resize', updateIndicator);
+      window.addEventListener('load', updateIndicator);
+
       const step = (dir) => {
         const tabsList = Array.from(tabs);
         const active = footprint.querySelector('.footprint__tab.is-active');
@@ -658,7 +741,6 @@ WITH WEBUGOL</h2>
         const len = tabsList.length;
         const target = tabsList[(idx + dir + len) % len];
         activatePartner(target.dataset.partner);
-        target.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
       };
       const prevBtn = footprint.querySelector('.footprint__tabs-prev');
       const nextBtn = footprint.querySelector('.footprint__tabs-next');
