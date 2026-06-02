@@ -347,37 +347,43 @@
       width: 100% !important;
       height: auto !important;
       aspect-ratio: 335 / 268;
-      transition: transform 4.5s cubic-bezier(0.22, 1, 0.36, 1),
-        opacity 3s ease-out;
+      transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.7s ease-out;
 
       &--2 {
         order: 1;
         transform: translateX(-150%);
+        transition-delay: 0s;
       }
 
       &--1 {
         order: 2;
         transform: translateX(150%);
+        transition-delay: 0s;
       }
 
       &--7 {
         order: 3;
         transform: translateX(-150%);
+        transition-delay: 0.2s;
       }
 
       &--4 {
         order: 4;
         transform: translateX(150%);
+        transition-delay: 0.2s;
       }
 
       &--3 {
         order: 5;
         transform: translateX(-150%);
+        transition-delay: 0.4s;
       }
 
       &--5 {
         order: 6;
         transform: translateX(150%);
+        transition-delay: 0.4s;
       }
 
       &--6 {
@@ -386,6 +392,7 @@
         aspect-ratio: 335 / 168;
         transform: translateY(80px);
         opacity: 0;
+        transition-delay: 0.6s;
       }
     }
 
@@ -393,11 +400,14 @@
       position: absolute;
       bottom: 0;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translateX(-50%) translateY(20px);
       width: max-content;
       height: auto;
       padding: 18px 32px;
       font-size: 16px;
+      opacity: 0;
+      transition: opacity 0.6s ease-out 0.85s,
+        transform 0.6s ease-out 0.85s;
     }
 
     &.is-visible {
@@ -408,6 +418,11 @@
           transform: translateY(0) !important;
           opacity: 1;
         }
+      }
+
+      .partnership__button {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
       }
     }
   }
