@@ -335,6 +335,11 @@
       opacity: 1;
       pointer-events: auto;
     }
+
+    &:not(:has(.footprint__card-link)) {
+      justify-content: center;
+      padding-bottom: 96px;
+    }
   }
 
   &__card-body {
