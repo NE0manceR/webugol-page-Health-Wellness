@@ -572,7 +572,7 @@ WITH WEBUGOL</h2>
     if (cubeNumber && steps.length) {
       let currentNum = null;
       const updateActiveStep = () => {
-        const triggerY = window.innerHeight * 0.5;
+        const triggerY = window.innerHeight * 0.4;
         let bestStep = null;
         let bestDist = Infinity;
         steps.forEach((step) => {
@@ -590,7 +590,14 @@ WITH WEBUGOL</h2>
         currentNum = num;
         cubeNumber.textContent = num;
         steps.forEach((s) => s.classList.toggle('is-active', s.dataset.step === num));
-        nums.forEach((n) => n.classList.toggle('is-active', n.dataset.step === num));
+        const cur = parseInt(num, 10);
+        nums.forEach((n) => {
+          const s = parseInt(n.dataset.step, 10);
+          n.style.setProperty('--slot', s - cur);
+          n.classList.toggle('is-active', s === cur);
+          n.classList.toggle('is-prev', s === cur - 1);
+          n.classList.toggle('is-next', s === cur + 1);
+        });
       };
       let ticking = false;
       window.addEventListener('scroll', () => {

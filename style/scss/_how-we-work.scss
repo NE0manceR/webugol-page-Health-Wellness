@@ -59,15 +59,32 @@
   }
 
   &__num {
+    --num-offset: 250px;
+    --slot: 0;
     grid-column: 1;
+    grid-row: 1 / -1;
+    position: sticky;
+    top: 50vh;
+    transform: translateY(calc(-50% + var(--slot) * var(--num-offset)));
+    align-self: start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 220px;
+    z-index: 1;
     color: rgba(255, 255, 255, 0.15);
     font-family: $font-heading;
     font-weight: 800;
     font-size: 120px;
     line-height: 1;
     text-align: center;
-    align-self: center;
-    transition: opacity 0.3s ease;
+    opacity: 0;
+    transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  &__num.is-prev,
+  &__num.is-next {
+    opacity: 1;
   }
 
   &__step {
@@ -86,7 +103,6 @@
     }
   }
 
-  &__num,
   &__step {
     &[data-step="1"] {
       grid-row: 1;
@@ -196,6 +212,8 @@
     }
 
     &__num {
+      --num-offset: 110px;
+      height: 130px;
       font-size: 72px;
     }
 
