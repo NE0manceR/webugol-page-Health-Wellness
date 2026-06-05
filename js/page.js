@@ -364,11 +364,14 @@ if (footprint && typeof Swiper !== 'undefined') {
   };
 
   // Thumbs slider: the company tabs. The active tab is always centred in the
-  // viewport (centeredSlides). The underline indicator is re-measured every
-  // animation frame while the strip is moving, so it tracks the active tab
-  // smoothly during both the centring animation and free-drag (Swiper only
-  // fires setTranslate once for an animated slide, which isn't enough).
+  // viewport (centeredSlides) and the strip snaps one tab per swipe — dragging
+  // it changes the active partner one step at a time, like the cards slider.
+  // The underline indicator is re-measured every animation frame while the
+  // strip is moving, so it tracks the active tab smoothly during both the
+  // centring animation and the drag (Swiper only fires setTranslate once for an
+  // animated slide, which isn't enough).
   let indicatorRAF = 0;
+  let thumbsReady = false;
   const trackIndicator = () => {
     updateIndicator();
     indicatorRAF = requestAnimationFrame(trackIndicator);
@@ -381,7 +384,6 @@ if (footprint && typeof Swiper !== 'undefined') {
   const thumbsSwiper = new Swiper(tabsEl, {
     slidesPerView: 'auto',
     spaceBetween: 40,
-    freeMode: true,
     centeredSlides: true,
     centeredSlidesBounds: true,
     simulateTouch: true,
@@ -390,12 +392,18 @@ if (footprint && typeof Swiper !== 'undefined') {
     observer: true,
     observeParents: true,
     on: {
+      slideChange: (sw) => {
+        if (syncing || !thumbsReady) return;
+        const partner = navOrder[sw.activeIndex];
+        if (partner) activatePartner(partner);
+      },
       setTranslate: updateIndicator,
       transitionStart: trackIndicator,
       transitionEnd: stopIndicator,
       resize: updateIndicator,
     },
   });
+  thumbsReady = true;
 
   // Main slider: the description cards.
   const cardsSwiper = new Swiper(cardsEl, {
@@ -423,7 +431,11 @@ if (footprint && typeof Swiper !== 'undefined') {
     );
 
     const tabIdx = navOrder.indexOf(partner);
-    if (tabIdx >= 0) thumbsSwiper.slideTo(tabIdx);
+    if (tabIdx >= 0) {
+      syncing = true;
+      thumbsSwiper.slideTo(tabIdx);
+      syncing = false;
+    }
 
     if (!fromCards) {
       const cardIdx = cardOrder.indexOf(partner);

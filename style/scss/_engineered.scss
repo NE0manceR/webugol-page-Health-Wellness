@@ -345,8 +345,9 @@
       font-size: 18px;
       padding-left: 27px;
 
-      li + li {
+      li+li {
         margin-top: 12px;
+        max-width: 240px;
       }
     }
 
@@ -401,6 +402,18 @@
     &__step {
       padding: 18px 16px;
       background: $card-bg;
+    }
+  }
+
+  @media (max-width: 420px) {
+    &__step-title {
+      font-size: 16px;
+    }
+
+    &__list {
+      li+li {
+        max-width: 240px;
+      }
     }
   }
 }
