@@ -230,19 +230,20 @@
   }
 
   &__tabs {
-    display: flex;
-    align-items: stretch;
-    gap: 40px;
     flex: 1;
-    overflow-x: auto;
-    scrollbar-width: none;
+    min-width: 0;
+    overflow: hidden;
     border-bottom: 2px solid rgba(255, 255, 255, 0.2);
 
-    &::-webkit-scrollbar { display: none; }
+    .swiper-wrapper {
+      align-items: stretch;
+    }
   }
 
   &__tab {
     flex-shrink: 0;
+    width: auto;
+    height: auto;
     position: relative;
     padding: 8px;
     background: none;
@@ -309,35 +310,39 @@
   &__cards {
     position: relative;
     width: 580px;
-    height: 346px;
+    // Swiper centers `.swiper` with `margin: auto`; keep cards aligned left.
+    margin-left: 0;
+    margin-right: auto;
     pointer-events: auto;
+
+    // Fixed-height cards so every slide is identical and the block never
+    // resizes when switching cards.
+    .swiper-wrapper {
+      height: 346px;
+    }
+
+    &.swiper-autoheight,
+    &.swiper-autoheight .swiper-slide {
+      height: 100%;
+    }
   }
 
   &__card {
-    position: absolute;
-    inset: 0;
+    position: relative;
+    height: 100%;
     padding: 32px;
     padding-right: 40px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
-    &.is-active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
     &:not(:has(.footprint__card-link)) {
-      justify-content: center;
-      padding-bottom: 96px;
+      padding-bottom: 90px;
     }
   }
 
@@ -531,11 +536,21 @@
       width: 100%;
       height: auto;
       min-height: auto;
+
+      // On mobile each card keeps its own height (autoHeight handles it).
+      .swiper-wrapper {
+        height: 420px;
+        align-items: flex-start;
+      }
+
+      &.swiper-autoheight,
+      &.swiper-autoheight .swiper-slide {
+        height: 100%;
+      }
     }
 
     &__card {
-      position: relative;
-      inset: auto;
+      height: auto;
       background: #414141;
       padding: 28px;
       backdrop-filter: none;
@@ -550,14 +565,6 @@
 
     &__card-text {
       font-size: 16px;
-    }
-
-    &__card.is-active {
-      position: relative;
-    }
-
-    &__card:not(.is-active) {
-      display: none;
     }
 
     &__card-title {
