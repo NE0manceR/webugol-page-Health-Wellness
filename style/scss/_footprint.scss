@@ -674,6 +674,22 @@
       pointer-events: none;
     }
 
+    &__marker {
+      width: 34px;
+      height: 34px;
+      transform: translate(-50%, calc(-100% - 8px));
+    }
+
+    &__marker-letter {
+      font-size: 16px;
+    }
+
+    &__glow {
+      width: 14px;
+      height: 14px;
+      border-width: 1px;
+    }
+
     &__map {
       max-width: 100%;
       aspect-ratio: 1 / 1;
