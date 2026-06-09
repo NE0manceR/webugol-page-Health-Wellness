@@ -548,15 +548,16 @@
       height: auto;
       min-height: auto;
 
-      // On mobile each card keeps its own height (autoHeight handles it).
+      // On mobile cards size to their content; Swiper's autoHeight drives the
+      // wrapper height per active slide, so nothing is locked to a fixed size.
       .swiper-wrapper {
-        height: 420px;
+        height: auto;
         align-items: flex-start;
       }
 
       &.swiper-autoheight,
       &.swiper-autoheight .swiper-slide {
-        height: 100%;
+        height: auto;
       }
     }
 

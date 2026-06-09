@@ -320,7 +320,8 @@
       left: auto;
       top: auto;
       width: 304px;
-      margin: 32px 0 0 32px;
+      margin: 0;
+      padding: 32px;
       z-index: 2;
     }
 
@@ -406,10 +407,6 @@
   }
 
   @media (max-width: 420px) {
-    &__step-title {
-      font-size: 16px;
-    }
-
     &__list {
       li+li {
         max-width: 240px;

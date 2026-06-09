@@ -112,7 +112,7 @@ const PARTNERS = [
     name: 'Aditi Desai',
     logo: './assets/images/logos/aditi.svg',
     link: true,
-    text: 'Placeholder description for Aditi Desai. Replace with the real partner copy.',
+    text: "Aditi Desai Clinic is a leading London-based medical facility specializing in sleep-related disorders and dental issues, including Bruxism, Snoring, TMJ, and Sleep Apnea. With a focus on innovation and personalized care, the clinic provides expert treatments that enhance patients' sleep, health, and overall quality of life in a welcoming, professional environment.",
   },
   {
     id: 'aspireloss',
@@ -133,7 +133,7 @@ const PARTNERS = [
     name: 'BADSM',
     logo: './assets/images/logos/badsm.svg',
     link: false,
-    text: 'Placeholder description for BADSM. Replace with the real partner copy.',
+    text: 'The British Academy of Dental Sleep Medicine equips dentists to identify the millions affected by sleep disorders, particularly snoring and sleep apnoea, and guide them toward effective recovery. With accredited education, clinical excellence, and patient-centered solutions, the Academy ensures high-quality care in Dental Sleep Medicine.',
   },
   {
     id: 'drtelx',
@@ -165,10 +165,10 @@ const PARTNERS = [
   },
   {
     id: 'hilser',
-    name: 'Hilser Clinic',
+    name: 'Hillser Clinic',
     logo: './assets/images/logos/hilser-clinic.svg',
     link: false,
-    text: 'Placeholder description for Hilser Clinic. Replace with the real partner copy.',
+    text: 'Hillser Clinic is a leading medical facility specializing in Sleep Medicine, Rhinology, and Facial Aesthetics. The clinic offers personalized care and state-of-the-art services in a professional, calming environment. Hillser Clinic enhances well-being through evidence-based treatments, helping individuals improve sleep, breathing, and facial appearance, with a focus on safety, comfort, and exceptional results.',
   },
   {
     id: 'invigor',
@@ -372,6 +372,26 @@ if (footprint && typeof Swiper !== 'undefined') {
   // animated slide, which isn't enough).
   let indicatorRAF = 0;
   let thumbsReady = false;
+
+  // While the user drags the tab strip, find the slide nearest the centre from
+  // the live translate so we can switch the active partner mid-drag (Swiper
+  // only emits slideChange once the strip settles).
+  const centeredTabIndex = (sw) => {
+    const grid = sw.snapGrid;
+    if (!grid || !grid.length) return sw.activeIndex;
+    const pos = -sw.translate;
+    let best = 0;
+    let bestDist = Infinity;
+    for (let i = 0; i < grid.length; i++) {
+      const dist = Math.abs(grid[i] - pos);
+      if (dist < bestDist) {
+        bestDist = dist;
+        best = i;
+      }
+    }
+    return best;
+  };
+
   const trackIndicator = () => {
     updateIndicator();
     indicatorRAF = requestAnimationFrame(trackIndicator);
@@ -397,6 +417,16 @@ if (footprint && typeof Swiper !== 'undefined') {
         const partner = navOrder[sw.activeIndex];
         if (partner) activatePartner(partner);
       },
+      // `sliderMove` fires only while the strip is actually being dragged — a
+      // plain tap never triggers it, so this can't fight the tab click handler.
+      sliderMove: (sw) => {
+        if (!thumbsReady) return;
+        const partner = navOrder[centeredTabIndex(sw)];
+        if (!partner) return;
+        const active = footprint.querySelector('.footprint__tab.is-active');
+        if (active && active.dataset.partner === partner) return;
+        activatePartner(partner, 'thumbsDrag');
+      },
       setTranslate: updateIndicator,
       transitionStart: trackIndicator,
       transitionEnd: stopIndicator,
@@ -417,12 +447,15 @@ if (footprint && typeof Swiper !== 'undefined') {
       slideChange: () => {
         if (syncing) return;
         const partner = cardOrder[cardsSwiper.activeIndex];
-        if (partner) activatePartner(partner, true);
+        if (partner) activatePartner(partner, 'cards');
       },
     },
   });
 
-  function activatePartner(partner, fromCards) {
+  // `source` tells us which slider triggered the change so we don't fight it:
+  //   'cards'      — a card swipe; leave the cards slider where the user put it.
+  //   'thumbsDrag' — a live drag of the tab strip; leave the strip alone.
+  function activatePartner(partner, source) {
     tabs.forEach((el) =>
       el.classList.toggle('is-active', el.dataset.partner === partner),
     );
@@ -430,14 +463,16 @@ if (footprint && typeof Swiper !== 'undefined') {
       el.classList.toggle('is-active', el.dataset.partner === partner),
     );
 
-    const tabIdx = navOrder.indexOf(partner);
-    if (tabIdx >= 0) {
-      syncing = true;
-      thumbsSwiper.slideTo(tabIdx);
-      syncing = false;
+    if (source !== 'thumbsDrag') {
+      const tabIdx = navOrder.indexOf(partner);
+      if (tabIdx >= 0) {
+        syncing = true;
+        thumbsSwiper.slideTo(tabIdx);
+        syncing = false;
+      }
     }
 
-    if (!fromCards) {
+    if (source !== 'cards') {
       const cardIdx = cardOrder.indexOf(partner);
       if (cardIdx >= 0) {
         syncing = true;
@@ -499,6 +534,26 @@ if (footprint && typeof Swiper !== 'undefined') {
   const initialTab =
     footprint.querySelector('.footprint__tab.is-active') || tabs[0];
   if (initialTab) activatePartner(initialTab.dataset.partner);
+
+  // The tab labels use a custom heading font that loads asynchronously. Swiper
+  // measures the slide widths on init (before the font is ready), so the active
+  // tab ends up centred against stale widths and the strip looks pre-scrolled.
+  // Recompute and re-align to the active tab once layout has settled.
+  const refreshThumbs = () => {
+    thumbsSwiper.update();
+    const active = footprint.querySelector('.footprint__tab.is-active');
+    const idx = tabs.indexOf(active);
+    if (idx >= 0) {
+      syncing = true;
+      thumbsSwiper.slideTo(idx, 0);
+      syncing = false;
+    }
+    updateIndicator();
+  };
+  window.addEventListener('load', refreshThumbs);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(refreshThumbs);
+  }
 
   window.addEventListener('resize', updateIndicator);
   window.addEventListener('load', updateIndicator);
