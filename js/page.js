@@ -147,7 +147,7 @@ const PARTNERS = [
     name: 'Dearborn West Dental',
     logo: './assets/images/logos/dearborn.svg',
     link: false,
-    text: 'Dearborn West Dental is a modern dental practice focused on patient-first care. Description coming soon.',
+    text: 'Dearborn West Dental is a trusted dental practice with over 30 years of experience offering comprehensive care in Dearborn. Their services include general dentistry (exams, cleanings), restorative treatments (implants, crowns), cosmetic procedures, and specialized care such as sedation dentistry, emergency services, and pediatric dentistry.',
   },
   {
     id: 'drugtesting',
