@@ -29,10 +29,15 @@ $font-text:    "Biryani", sans-serif;
 }
 
 .wellnes-primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: max-content;
   padding: 20px 55px 16px;
   border-radius: 10px;
   background: $main-text-color;
+  text-align: center;
+  text-decoration: none;
 
   color: $second-text-color;
   font-family: "Josefin Sans";

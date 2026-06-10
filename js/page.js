@@ -77,6 +77,7 @@ const PARTNERS = [
     name: 'Ways2Well',
     logo: './assets/images/logos/ways2well.svg',
     link: true,
+    url: 'https://webugol.com/projects/ways2well/',
     text: 'Ways2Well is a leading wellness clinic that provides innovative treatments to improve health and well-being. Specializing in stem cell therapy, hormone replacement therapy, weight loss solutions, and holistic care, W2W combines advanced medical technology with personalized care to help individuals enhance energy, manage chronic conditions, lose weight, and improve overall wellness.',
   },
   {
@@ -84,6 +85,7 @@ const PARTNERS = [
     name: 'Valhalla Vitality',
     logo: './assets/images/logos/valhalla.svg',
     link: true,
+    url: 'https://webugol.com/projects/valhalla-vitality/',
     text: 'Valhalla Vitality is a wellness company specializing in personalized health solutions, offering services like hormone replacement therapy, weight loss treatments, and sexual health therapies. Focused on improving vitality, they use innovative treatments tailored to individual needs. Whether addressing hormonal balance or overall wellness, Valhalla Vitality provides holistic care to help clients feel their best.',
   },
   {
@@ -98,6 +100,7 @@ const PARTNERS = [
     name: 'Partington',
     logo: './assets/images/logos/partinggton.svg',
     link: true,
+    url: 'https://webugol.com/projects/partington-plastic-surgery/',
     text: 'Partington Plastic Surgery, under the esteemed leadership of Dr. Marshall T. Partington, turned to Webugol to amplify their online presence for specific cosmetic and aesthetic services like breast augmentation and labiaplasty. With an established ad presence, the clinic aimed to refine its Google Ads for more targeted and effective outreach.',
   },
   {
@@ -105,6 +108,7 @@ const PARTNERS = [
     name: "Atlas Men's Health",
     logo: './assets/images/logos/atlas.svg',
     link: true,
+    url: 'https://webugol.com/projects/altas-mens-health/',
     text: "Atlas Men's Health is a premier men's health clinic specializing in male hormone replacement, medical weight loss, testosterone replacement therapy (TRT), and other men's health services. The clinic offers personalized treatment plans to optimize health and wellness, focusing on affordable, quality healthcare.",
   },
   {
@@ -112,6 +116,7 @@ const PARTNERS = [
     name: 'Aditi Desai',
     logo: './assets/images/logos/aditi.svg',
     link: true,
+    url: 'https://webugol.com/projects/aditi-desai/',
     text: "Aditi Desai Clinic is a leading London-based medical facility specializing in sleep-related disorders and dental issues, including Bruxism, Snoring, TMJ, and Sleep Apnea. With a focus on innovation and personalized care, the clinic provides expert treatments that enhance patients' sleep, health, and overall quality of life in a welcoming, professional environment.",
   },
   {
@@ -126,6 +131,7 @@ const PARTNERS = [
     name: 'Aspire Elite Wellness',
     logo: './assets/images/logos/aspire-elite.svg',
     link: true,
+    url: 'https://webugol.com/projects/aspire-elite/',
     text: 'Aspire Elite is a telehealth clinic offering prescription weight loss treatments using GLP-1 medications like Semaglutide and Tirzepatide. Serving patients in Florida, Texas, and New York, Aspire Meds provides convenient, doctor-guided care through a fully online platform — helping clients lose weight safely, effectively, and with expert support.',
   },
   {
@@ -140,6 +146,7 @@ const PARTNERS = [
     name: 'Dr Telx',
     logo: './assets/images/logos/dr-telx.svg',
     link: true,
+    url: 'https://webugol.com/projects/dr-telx/',
     text: 'Telx-inc is a telecommunications provider serving businesses across the Greater Toronto Area and Southern Ontario. Specializing in business phone systems, Hosted PBX, and high-speed Internet, Telx-inc helps small and mid-sized companies stay connected through advanced, cost-effective solutions tailored to modern communication needs.',
   },
   {
@@ -154,6 +161,7 @@ const PARTNERS = [
     name: 'Drug Testing Supplies',
     logo: './assets/images/logos/drug-testing.svg',
     link: true,
+    url: 'https://webugol.com/projects/drug-testing-supplies/',
     text: 'Drug Testing Supplies is a leading provider of saliva-based drug tests for wholesale and retail markets. They offer reliable and accurate testing solutions for industries like workplace drug testing, healthcare, and law enforcement. Committed to quality and customer satisfaction, Drug Testing Supplies delivers top standards in testing products to help businesses maintain safe, drug-free environments.',
   },
   {
@@ -175,6 +183,7 @@ const PARTNERS = [
     name: 'Invigor',
     logo: './assets/images/logos/invigor-clinic.svg',
     link: true,
+    url: 'https://webugol.com/projects/invigor-medical/',
     text: 'Invigor Medical is an online clinic based in Kennewick, Washington, specializing in health and wellness. It helps individuals achieve optimal health and vitality through personalized, evidence-based treatments. As a telemedicine pioneer, Invigor Medical offers convenient access to healthcare services, allowing patients to consult with licensed providers from home.',
   },
   {
@@ -189,6 +198,7 @@ const PARTNERS = [
     name: 'Fusionlabs',
     logo: './assets/images/logos/fusionlabs.svg',
     link: true,
+    url: 'https://webugol.com/projects/fusionlabs/',
     text: 'Fusion Labs is a leading biotechnology and wellness company that offers advanced health solutions. Specializing in hormone therapy, medical-grade skincare treatments, and wellness programs, Fusion Labs combines state-of-the-art technology with expert scientific knowledge to deliver personalized solutions. These services are designed to enhance energy, vitality, and overall well-being, empowering individuals to live healthier lives.',
   },
   {
@@ -203,6 +213,7 @@ const PARTNERS = [
     name: "Men's Vitality MD",
     logo: './assets/images/logos/men`s-vitality.svg',
     link: true,
+    url: 'https://webugol.com/projects/mens-vitality-md/',
     text: "Men’s Vitality MD is a telehealth practice that focuses on the unique health concerns of men as they age. Located in Honolulu, Hawaii, the practice is led by anti-aging and hormone specialist Scott Sanderson, MD. The team offers a wide range of cutting-edge treatments to ensure men look and feel their best.",
   },
   {
@@ -210,6 +221,7 @@ const PARTNERS = [
     name: 'LifeRx.MD',
     logo: './assets/images/logos/liferx-md.svg',
     link: true,
+    url: 'https://webugol.com/projects/liferx-md/',
     text: 'LifeRx.md is a virtual weight loss clinic helping individuals achieve lasting results through tailored programs and telehealth services. Their offerings include personalized care plans and support with medications like semaglutide, making weight loss more accessible. LifeRx.md empowers clients to reach and sustain their wellness goals from anywhere in the U.S.',
   },
   {
@@ -217,6 +229,7 @@ const PARTNERS = [
     name: 'Lody Health Klinik',
     logo: './assets/images/logos/lody-health.svg',
     link: true,
+    url: 'https://webugol.com/projects/lodyhealth/',
     text: 'Lody Health Klinik is a progressive healthcare clinic based in Vaughan, Ontario, combining traditional and alternative medicine. The clinic specializes in cancer support, pain relief, cardiovascular care, and cosmetic treatments. Their root-cause approach and individualized care plans help patients restore balance and improve quality of life naturally.',
   },
   {
@@ -238,6 +251,7 @@ const PARTNERS = [
     name: 'Tenuiss',
     logo: './assets/images/logos/tenuiss.svg',
     link: true,
+    url: 'https://webugol.com/projects/tenuiss/',
     text: 'Tenuiss is a team of U.S.-based weight loss specialists, cardiology experts, and nutritionists focused on improving long-term health outcomes. With over 20 years of combined experience, the clinic offers advanced solutions for weight management, diabetes, hypertension, and sleep apnea—helping patients lead healthier, longer lives.',
   },
 ];
@@ -290,7 +304,7 @@ if (footprint && typeof Swiper !== 'undefined') {
       if (p.link) {
         const link = document.createElement('a');
         link.className = 'footprint__card-link';
-        link.href = '#';
+        link.href = p.url || '#';
         link.textContent = 'View Project';
         card.appendChild(link);
       }
