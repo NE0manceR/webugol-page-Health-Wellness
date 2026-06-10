@@ -50,16 +50,7 @@
     left: 50%;
     transform: translateX(-50%);
     width: 320px;
-    height: 54px;
-    background: #fff;
-    color: #000;
-    border: none;
-    border-radius: 10px;
-    font-family: "Josefin Sans", sans-serif;
-    font-weight: 700;
-    font-size: 18px;
-    text-transform: uppercase;
-    cursor: pointer;
+    z-index: 10;
   }
 
   &__card {
