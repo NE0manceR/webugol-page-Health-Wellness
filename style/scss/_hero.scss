@@ -61,9 +61,9 @@
     }
 
     @media (max-width: 750px) {
-      bottom: 100px;
-      width: 300px;
-      height: 300px;
+      bottom: 76px;
+      width: 270px;
+      height: 270px;
         right: 92px;
     }
 
@@ -96,7 +96,7 @@
     }
 
     @media (max-width: 750px) {
-      transform: translateY(100px);
+      transform: translateY(calc(100px + 2%));
     }
   }
 

@@ -45,6 +45,7 @@ $font-text:    "Biryani", sans-serif;
 
   &:hover {
     background-color: $button-hover;
+    color: $main-text-color;
   }
 
   @media (max-width: 750px) {
