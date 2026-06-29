@@ -14,16 +14,18 @@ if (partnership) {
   );
   observer.observe(partnership);
 
-  // The partnership stage is a fixed 1920px-wide coordinate system. On desktop
-  // screens narrower than the design we shrink it proportionally via a CSS
-  // scale, but scale() needs a unitless ratio that pure CSS can't derive from
-  // the viewport, so compute it here. SIDE_GAP keeps breathing room each side.
-  const STAGE_WIDTH = 1920;
-  const SIDE_GAP = 160; // 80px on each side
+  // The partnership stage is a fixed 1920px-wide coordinate system, but the
+  // visible cards only span ~1430px of it (the rest is empty margin). Below
+  // 1400px we shrink it proportionally via a CSS scale; scale() needs a
+  // unitless ratio that pure CSS can't derive from the viewport, so compute it
+  // here. Basing it on the content width (not 1920) keeps the scale near 1 at
+  // the 1400 breakpoint so there's no jump from the untouched desktop layout.
+  const CONTENT_WIDTH = 1430;
+  const SIDE_GAP = 100; // ~50px breathing room each side
   const scalePartnership = () => {
     const w = document.documentElement.clientWidth;
-    if (w > 1050 && w < 1920) {
-      const scale = Math.min(1, (w - SIDE_GAP) / STAGE_WIDTH);
+    if (w > 1050 && w <= 1400) {
+      const scale = Math.min(1, (w - SIDE_GAP) / CONTENT_WIDTH);
       partnership.style.setProperty('--p-scale', scale);
     } else {
       partnership.style.removeProperty('--p-scale');
