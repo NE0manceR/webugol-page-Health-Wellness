@@ -194,11 +194,11 @@
     }
   }
 
-  // Proportional shrink of the fixed 1920px stage, starting at 1400px so the
+  // Proportional shrink of the fixed 1920px stage, starting at 1500px so the
   // full desktop design stays untouched above it. --p-scale is set by JS
   // (page.js); CSS can't derive a unitless scale from the viewport itself
   // (length / length is invalid for scale()), hence JS.
-  @media (min-width: 1051px) and (max-width: 1400px) {
+  @media (min-width: 1051px) and (max-width: 1500px) {
     &__stage {
       transform: scale(var(--p-scale, 1));
       transform-origin: top center;

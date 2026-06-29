@@ -56,7 +56,7 @@
     text-align: center;
     text-transform: uppercase;
 
-    @media (max-width: 1400px) {
+    @media (max-width: 1500px) {
       font-size: 48px;
     }
   }
@@ -526,7 +526,7 @@
 
   // Shrink the globe proportionally on narrower desktops. The map keeps its
   // 1158:998 ratio so the %-positioned zones/markers stay aligned.
-  @media (min-width: 1051px) and (max-width: 1400px) {
+  @media (min-width: 1051px) and (max-width: 1500px) {
     &__container {
       min-height: 900px;
     }

@@ -19,12 +19,12 @@ if (partnership) {
   // 1400px we shrink it proportionally via a CSS scale; scale() needs a
   // unitless ratio that pure CSS can't derive from the viewport, so compute it
   // here. Basing it on the content width (not 1920) keeps the scale near 1 at
-  // the 1400 breakpoint so there's no jump from the untouched desktop layout.
+  // the 1500 breakpoint so there's no jump from the untouched desktop layout.
   const CONTENT_WIDTH = 1430;
   const SIDE_GAP = 100; // ~50px breathing room each side
   const scalePartnership = () => {
     const w = document.documentElement.clientWidth;
-    if (w > 1050 && w <= 1400) {
+    if (w > 1050 && w <= 1500) {
       const scale = Math.min(1, (w - SIDE_GAP) / CONTENT_WIDTH);
       partnership.style.setProperty('--p-scale', scale);
     } else {
