@@ -194,6 +194,20 @@
     }
   }
 
+  // Fluid proportional shrink of the fixed 1920px stage on desktop
+  // screens narrower than the design (e.g. 1500px) down to the tablet layout.
+  // --p-scale is set by JS (page.js) to (availableWidth - padding) / 1920 on
+  // desktop screens narrower than the 1920px design, so the fixed-px stage
+  // shrinks proportionally. CSS can't derive a unitless scale from the
+  // viewport itself (length / length is invalid for scale()), hence JS.
+  @media (min-width: 1051px) and (max-width: 1919px) {
+    &__stage {
+      transform: scale(var(--p-scale, 1));
+      transform-origin: top center;
+      margin-bottom: calc(-1309px * (1 - var(--p-scale, 1)));
+    }
+  }
+
   @media (max-width: 1050px) {
     padding-top: 80px;
 

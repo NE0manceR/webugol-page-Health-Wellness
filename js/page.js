@@ -13,6 +13,24 @@ if (partnership) {
     { threshold: 0.5 },
   );
   observer.observe(partnership);
+
+  // The partnership stage is a fixed 1920px-wide coordinate system. On desktop
+  // screens narrower than the design we shrink it proportionally via a CSS
+  // scale, but scale() needs a unitless ratio that pure CSS can't derive from
+  // the viewport, so compute it here. SIDE_GAP keeps breathing room each side.
+  const STAGE_WIDTH = 1920;
+  const SIDE_GAP = 160; // 80px on each side
+  const scalePartnership = () => {
+    const w = document.documentElement.clientWidth;
+    if (w > 1050 && w < 1920) {
+      const scale = Math.min(1, (w - SIDE_GAP) / STAGE_WIDTH);
+      partnership.style.setProperty('--p-scale', scale);
+    } else {
+      partnership.style.removeProperty('--p-scale');
+    }
+  };
+  scalePartnership();
+  window.addEventListener('resize', scalePartnership);
 }
 
 const cubeNumber = document.querySelector('.how-we-work__cube-number');
