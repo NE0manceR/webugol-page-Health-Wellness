@@ -124,6 +124,10 @@
       margin-bottom: 16px;
     }
 
+    @media (max-width: 1400px) {
+      font-size: 48px;
+    }
+
     @media (max-width: 1050px) {
       font-size: 52px;
       max-width: 650px;

@@ -55,6 +55,10 @@
     line-height: 1.1;
     text-align: center;
     text-transform: uppercase;
+
+    @media (max-width: 1400px) {
+      font-size: 48px;
+    }
   }
 
   &__info {
@@ -518,6 +522,19 @@
     font-size: 22px;
     line-height: 1;
     text-transform: uppercase;
+  }
+
+  // Shrink the globe proportionally on narrower desktops. The map keeps its
+  // 1158:998 ratio so the %-positioned zones/markers stay aligned.
+  @media (min-width: 1051px) and (max-width: 1400px) {
+    &__container {
+      min-height: 900px;
+    }
+
+    &__map {
+      width: 984px;
+      height: 848px;
+    }
   }
 
   @media (max-width: 1050px) {
